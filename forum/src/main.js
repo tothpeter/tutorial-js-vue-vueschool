@@ -1,16 +1,20 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import * as VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
 // Routing
 import PageHome from '@/components/PageHome'
 
 const routes = [
-  { path: '/', component: PageHome },
+  {
+    path: '/',
+    name: 'Home',
+    component: PageHome,
+  },
 ]
 
-const router = VueRouter.createRouter({
-  history: VueRouter.createWebHistory(),
+const router = createRouter({
+  history: createWebHistory(),
   routes,
 })
 
