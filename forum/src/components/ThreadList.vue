@@ -35,33 +35,23 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import sourceData from '@/data.json'
+import { defineProps, reactive } from 'vue'
 
-export default {
-  props: {
-    threads: {
-      required: true,
-      type: Array
-    }
-  },
-  data () {
-    return {
-      posts: sourceData.posts,
-      users: sourceData.users
-    }
-  },
-  methods: {
-    postById(id) {
-      return this.posts.find(post => post.id === id)
-    },
-    userById(id) {
-      return this.users.find(user => user.id === id)
-    }
+const users = reactive(sourceData.users)
+
+defineProps({
+  threads: {
+    required: true,
+    type: Array
   }
+})
+
+function userById(id) {
+  return users.find(user => user.id === id)
 }
 </script>
-
 
 <style scoped>
 
