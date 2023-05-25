@@ -9,22 +9,14 @@
 
     <post-list :posts="threadPosts" />
 
-    <div class="col-full">
-      <form @submit.prevent="addPost">
-        <div class="form-group">
-          <textarea v-model="newPostText" name="" id="" cols="30" rows="10" class="form-input"></textarea>
-        </div>
-        <div class="form-action">
-          <button class="btn-blue"></button>
-        </div>
-      </form>
-    </div>
+    <post-editor @save="addPost" />
   </div>
 </template>
 
 <script>
 import sourceData from '@/data.json'
 import PostList from '@/components/PostList'
+import PostEditor from '@/components/PostEditor'
 
 export default {
   props: {
@@ -34,14 +26,14 @@ export default {
     }
   },
   components: {
-    PostList
+    PostList,
+    PostEditor
   },
   data () {
     return {
       threads: sourceData.threads,
       posts: sourceData.posts,
       users: sourceData.users,
-      newPostText: ''
     }
   },
   computed: {
@@ -56,18 +48,14 @@ export default {
     userById(id) {
       return this.users.find(user => user.id === id)
     },
-    addPost() {
-      const newPost = {
-        id: this.posts.length + 1,
-        text: this.newPostText,
-        publishedAt: Math.floor(Date.now() / 1000),
-        threadId: this.id,
-        userId: this.users[0].id
-      }
+    addPost(eventData) {
+      const newPost = eventData.post
+      newPost.id = this.posts.length + 1
+      newPost.userId = this.users[0].id
+      newPost.threadId = this.id
 
       this.posts.push(newPost)
       this.thread.posts.push(newPost.id)
-      this.newPostText = ''
     }
   }
 }
