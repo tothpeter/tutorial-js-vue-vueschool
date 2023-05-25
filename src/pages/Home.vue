@@ -1,19 +1,21 @@
 <template>
-  <h1>Welcome to the Jungle</h1>
-  <thread-list :threads="threads" />
+  <div class="col-large">
+    <h1>Welcome to the Jungle</h1>
+    <forum-list :forums="forums" />
+  </div>
 </template>
 
 <script>
 import sourceData from '@/data.json'
-import ThreadList from '@/components/ThreadList'
+import ForumList from '@/components/ForumList'
 
 export default {
   components: {
-    ThreadList
+    ForumList
   },
   data () {
     return {
-      threads: sourceData.threads
+      forums: sourceData.forums
     }
   },
 }
