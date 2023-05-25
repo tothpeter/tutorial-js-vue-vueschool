@@ -13,7 +13,7 @@
 
           <p class="text-faded text-small">
             By <a href="#">{{ userById(thread.userId).name }}</a>,
-            <app-date :timestamp="thread.publishedAt" />
+            <base-date :timestamp="thread.publishedAt" />
           </p>
         </div>
 
@@ -29,7 +29,7 @@
               <a href="#">{{ userById(thread.userId).name }}</a>
             </p>
             <p class="text-xsmall text-faded">
-              <app-date :timestamp="thread.publishedAt" />
+              <base-date :timestamp="thread.publishedAt" />
             </p>
           </div>
         </div>
