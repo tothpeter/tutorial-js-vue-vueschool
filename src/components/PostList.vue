@@ -25,7 +25,6 @@
 <script setup>
 import sourceData from '@/data.json'
 import { defineProps, reactive } from 'vue'
-import AppDate from '@/components/AppDate'
 
 const users = reactive(sourceData.users)
 
