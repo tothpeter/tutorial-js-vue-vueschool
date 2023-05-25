@@ -10,7 +10,7 @@
     <post-list :posts="threadPosts" />
 
     <div class="col-full">
-      <form>
+      <form @submit.prevent="addPost">
         <div class="form-group">
           <textarea v-model="newPostText" name="" id="" cols="30" rows="10" class="form-input"></textarea>
         </div>
@@ -55,6 +55,19 @@ export default {
   methods: {
     userById(id) {
       return this.users.find(user => user.id === id)
+    },
+    addPost() {
+      const newPost = {
+        id: this.posts.length + 1,
+        text: this.newPostText,
+        publishedAt: Math.floor(Date.now() / 1000),
+        threadId: this.id,
+        userId: this.users[0].id
+      }
+
+      this.posts.push(newPost)
+      this.thread.posts.push(newPost.id)
+      this.newPostText = ''
     }
   }
 }
