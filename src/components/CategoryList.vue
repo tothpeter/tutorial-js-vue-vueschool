@@ -2,7 +2,9 @@
   <div>
     <div class="forum-list" v-for="category in categories" :key="category.id">
       <div class="list-title">
-        <a href="#">{{ category.name }}</a>
+        <router-link :to="{ name: 'CategoryShow', params: { id: category.id } }">
+          {{ category.name }}
+        </router-link>
       </div>
       <forum-list :forums="getForumsForCategory(category)" />
     </div>
