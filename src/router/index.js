@@ -1,6 +1,7 @@
 import Home from '@/pages/Home'
 import ThreadShow from '@/pages/ThreadShow'
 import NotFound from '@/pages/NotFound'
+import ForumShow from '@/pages/ForumShow'
 
 import { createRouter, createWebHistory } from 'vue-router'
 import sourceData from '@/data.json'
@@ -10,6 +11,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/forum/:id',
+    name: 'ForumShow',
+    component: ForumShow,
+    props: true,
   },
   {
     path: '/thread/:id',

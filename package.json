@@ -39,7 +39,8 @@
         "error",
         {
           "ignores": [
-            "Home"
+            "Home",
+            "Forum"
           ]
         }
       ]
