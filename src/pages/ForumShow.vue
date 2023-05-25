@@ -29,9 +29,4 @@ const props = defineProps({
 const forum = sourceData.forums.find(forum => forum.id === props.id)
 
 const threads = sourceData.threads.filter(thread => thread.forumId === forum.id)
-
 </script>
-
-<style>
-
-</style>
