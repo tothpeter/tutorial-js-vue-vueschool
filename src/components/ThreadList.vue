@@ -12,7 +12,8 @@
           </p>
 
           <p class="text-faded text-small">
-            By <a href="#">{{ userById(thread.userId).name }}</a>, {{ thread.publishedAt }}
+            By <a href="#">{{ userById(thread.userId).name }}</a>,
+            <app-date :timestamp="thread.publishedAt" />
           </p>
         </div>
 
@@ -27,7 +28,9 @@
             <p class="text-xsmall">
               <a href="#">{{ userById(thread.userId).name }}</a>
             </p>
-            <p class="text-xsmall text-faded">{{ thread.publishedAt }}</p>
+            <p class="text-xsmall text-faded">
+              <app-date :timestamp="thread.publishedAt" />
+            </p>
           </div>
         </div>
       </div>
@@ -38,6 +41,7 @@
 <script setup>
 import sourceData from '@/data.json'
 import { defineProps, reactive } from 'vue'
+import AppDate from '@/components/AppDate'
 
 const users = reactive(sourceData.users)
 
