@@ -8,6 +8,17 @@
     </p>
 
     <post-list :posts="threadPosts" />
+
+    <div class="col-full">
+      <form>
+        <div class="form-group">
+          <textarea :value="newPostText" @input="newPostText = $event.target.value" name="" id="" cols="30" rows="10" class="form-input"></textarea>
+        </div>
+        <div class="form-action">
+          <button class="btn-blue"></button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -29,7 +40,8 @@ export default {
     return {
       threads: sourceData.threads,
       posts: sourceData.posts,
-      users: sourceData.users
+      users: sourceData.users,
+      newPostText: ''
     }
   },
   computed: {
