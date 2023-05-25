@@ -1,8 +1,5 @@
 <template>
-  <div class="forum-list">
-    <div class="list-title">
-      <a href="#">Category</a>
-    </div>
+  <div>
     <div class="forum-listing" v-for="forum in forums" :key="forum.id">
       <div class="forum-details">
         <router-link

@@ -1,21 +1,21 @@
 <template>
   <div class="col-large">
     <h1>Welcome to the Jungle</h1>
-    <forum-list :forums="forums" />
+    <category-list :categories="categories" />
   </div>
 </template>
 
 <script>
 import sourceData from '@/data.json'
-import ForumList from '@/components/ForumList'
+import CategoryList from '@/components/CategoryList'
 
 export default {
   components: {
-    ForumList
+    CategoryList
   },
   data () {
     return {
-      forums: sourceData.forums
+      categories: sourceData.categories
     }
   },
 }
