@@ -2,7 +2,15 @@ import { createStore } from 'vuex'
 import sourceData from '@/data.json'
 
 export default createStore({
-  state: sourceData,
+  state: {
+    ...sourceData,
+    authId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1'
+  },
+  getters: {
+    authUser(state) {
+      return state.users.find(user => user.id === state.authId)
+    }
+  },
   actions: {
     createPost(context, post) {
       context.commit('createPost', { post })

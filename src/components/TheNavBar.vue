@@ -16,9 +16,9 @@
       <ul>
         <li class="navbar-user">
           <a href="#">
-            <img class="avatar-small" src="" />
+            <img class="avatar-small" :src="authUser.avatar" :alt="`${authUser.name} profile pic`" />
             <span>
-              Auth user
+              {{ authUser.name }}
               <img
                 class="icon-profile"
                 src="../assets/svg/arrow-profile.svg"
@@ -46,8 +46,11 @@
   </header>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+const authUser = computed(() => useStore().getters.authUser)
 </script>
 
 <style>
