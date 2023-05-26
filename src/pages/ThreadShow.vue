@@ -50,15 +50,12 @@ export default {
       return this.users.find(user => user.id === id)
     },
     addPost(eventData) {
-      const newPost = {
+      const post = {
         ...eventData.post,
-        id: this.posts.length + 1,
-        userId: this.users[0].id,
         threadId: this.id,
       }
 
-      this.posts.push(newPost)
-      this.thread.posts.push(newPost.id)
+      this.$store.dispatch('createPost', post)
     }
   }
 }
