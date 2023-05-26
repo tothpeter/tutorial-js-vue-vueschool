@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import sourceData from '@/data.json'
 import PostList from '@/components/PostList'
 import PostEditor from '@/components/PostEditor'
 
@@ -31,9 +30,9 @@ export default {
   },
   data () {
     return {
-      threads: sourceData.threads,
-      posts: sourceData.posts,
-      users: sourceData.users,
+      threads: this.$store.state.threads,
+      posts: this.$store.state.posts,
+      users: this.$store.state.users,
     }
   },
   computed: {

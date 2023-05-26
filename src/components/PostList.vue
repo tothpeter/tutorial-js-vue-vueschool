@@ -23,10 +23,10 @@
 </template>
 
 <script setup>
-import sourceData from '@/data.json'
+import { useStore } from 'vuex';
 import { defineProps, reactive } from 'vue'
 
-const users = reactive(sourceData.users)
+const users = reactive(useStore().state.users)
 
 defineProps({
   posts: {

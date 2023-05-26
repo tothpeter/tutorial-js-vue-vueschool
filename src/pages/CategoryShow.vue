@@ -6,9 +6,10 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-import sourceData from '@/data.json'
 import CategoryList from '@/components/CategoryList'
+
+import { defineProps, computed } from 'vue'
+import { useStore } from 'vuex';
 
 const props = defineProps({
   id: {
@@ -17,5 +18,9 @@ const props = defineProps({
   }
 })
 
-const category = sourceData.categories.find(category => category.id === props.id)
+const state = useStore().state
+
+const category = computed(() => {
+  return state.categories.find(category => category.id === props.id)
+})
 </script>

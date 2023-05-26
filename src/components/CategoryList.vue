@@ -12,9 +12,10 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
 import ForumList from './ForumList'
-import sourceData from '../data.json'
+
+import { defineProps } from 'vue'
+import { useStore } from 'vuex';
 
 defineProps({
   categories: {
@@ -23,8 +24,10 @@ defineProps({
   }
 })
 
+const state = useStore().state
+
 function getForumsForCategory(category) {
-  return sourceData.forums.filter(forum => forum.categoryId === category.id)
+  return state.forums.filter(forum => forum.categoryId === category.id)
 }
 </script>
 

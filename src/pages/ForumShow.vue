@@ -15,9 +15,10 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-import sourceData from '@/data.json'
 import ThreadList from '@/components/ThreadList.vue'
+
+import { defineProps } from 'vue'
+import { useStore } from 'vuex';
 
 const props = defineProps({
   id: {
@@ -26,7 +27,9 @@ const props = defineProps({
   }
 })
 
-const forum = sourceData.forums.find(forum => forum.id === props.id)
+const state = useStore().state
 
-const threads = sourceData.threads.filter(thread => thread.forumId === forum.id)
+const forum = state.forums.find(forum => forum.id === props.id)
+
+const threads = state.threads.filter(thread => thread.forumId === forum.id)
 </script>

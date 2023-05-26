@@ -5,7 +5,7 @@ import ForumShow from '@/pages/ForumShow'
 import CategoryShow from '@/pages/CategoryShow'
 
 import { createRouter, createWebHistory } from 'vue-router'
-import sourceData from '@/data.json'
+import { useStore } from 'vuex';
 
 const routes = [
   {
@@ -31,7 +31,7 @@ const routes = [
     component: ThreadShow,
     props: true,
     beforeEnter(to, from, next) {
-      const threadExist = sourceData.threads.find((thread) => thread.id === to.params.id)
+      const threadExist = useStore().state.threads.find((thread) => thread.id === to.params.id)
 
       if (threadExist) {
         next()
