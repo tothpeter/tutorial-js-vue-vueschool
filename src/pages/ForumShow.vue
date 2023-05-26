@@ -17,7 +17,7 @@
 <script setup>
 import ThreadList from '@/components/ThreadList.vue'
 
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import { useStore } from 'vuex';
 
 const props = defineProps({
@@ -29,7 +29,6 @@ const props = defineProps({
 
 const state = useStore().state
 
-const forum = state.forums.find(forum => forum.id === props.id)
-
-const threads = state.threads.filter(thread => thread.forumId === forum.id)
+const forum = computed(() => { return state.forums.find(forum => forum.id === props.id) })
+const threads = computed(() => { return state.threads.filter(thread => thread.forumId === props.id) })
 </script>

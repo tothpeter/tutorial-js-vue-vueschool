@@ -24,9 +24,9 @@
 
 <script setup>
 import { useStore } from 'vuex';
-import { defineProps, reactive } from 'vue'
+import { defineProps, computed } from 'vue'
 
-const users = reactive(useStore().state.users)
+const users = computed(() => { return useStore().state.users })
 
 defineProps({
   posts: {
@@ -36,7 +36,7 @@ defineProps({
 })
 
 function userById(id) {
-  return users.find(user => user.id === id)
+  return users.value.find(user => user.id === id)
 }
 </script>
 
