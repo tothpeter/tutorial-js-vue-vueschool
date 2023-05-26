@@ -28,14 +28,16 @@ export default {
     PostList,
     PostEditor
   },
-  data () {
-    return {
-      threads: this.$store.state.threads,
-      posts: this.$store.state.posts,
-      users: this.$store.state.users,
-    }
-  },
   computed: {
+    threads() {
+      return this.$store.state.threads
+    },
+    posts() {
+      return this.$store.state.posts
+    },
+    users() {
+      return this.$store.state.users
+    },
     thread() {
       return this.threads.find(thread => thread.id === this.id)
     },
