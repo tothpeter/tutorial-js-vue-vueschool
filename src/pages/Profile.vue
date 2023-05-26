@@ -9,7 +9,7 @@
         <span class="text-lead">{{ user.name }}'s recent activity</span>
       </div>
       <hr />
-      <PostList :posts="userPosts" />
+      <PostList :posts="user.posts" />
     </div>
   </div>
 </template>
@@ -24,8 +24,6 @@ import { useStore } from 'vuex'
 const store = useStore()
 
 const user = computed(() => store.getters.authUser)
-
-const userPosts = computed(() => store.state.posts.filter(post => post.userId === user.value.id))
 </script>
 
 <style>

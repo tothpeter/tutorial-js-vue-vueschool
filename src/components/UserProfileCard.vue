@@ -13,8 +13,8 @@
     <span class="online">{{ user.username }} is online</span>
 
     <div class="stats">
-      <span>{{ userPostsCount }} posts</span>
-      <span>{{ userThreadsCount }} threads</span>
+      <span>{{ user.postsCount }} posts</span>
+      <span>{{ user.threadsCount }} threads</span>
     </div>
 
     <hr>
@@ -28,7 +28,6 @@
 
 <script setup>
 import { defineProps, computed } from 'vue'
-import { useStore } from 'vuex'
 
 const props = defineProps({
   user: {
@@ -38,11 +37,4 @@ const props = defineProps({
 })
 
 const user = computed(() => props.user)
-
-const store = useStore()
-
-const userPosts = computed(() => store.state.posts.filter(post => post.userId === user.value.id))
-
-const userPostsCount = computed(() => userPosts.value.length)
-const userThreadsCount = computed(() => store.state.threads.filter(thread => thread.userId === user.value.id).length)
 </script>
