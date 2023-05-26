@@ -3,6 +3,7 @@ import ThreadShow from '@/pages/ThreadShow'
 import NotFound from '@/pages/NotFound'
 import ForumShow from '@/pages/ForumShow'
 import CategoryShow from '@/pages/CategoryShow'
+import Profile from '@/pages/Profile'
 
 import { createRouter, createWebHistory } from 'vue-router'
 import { useStore } from 'vuex'
@@ -12,6 +13,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/me',
+    name: 'Profile',
+    component: Profile,
   },
   {
     path: '/forum/:id',
