@@ -15,7 +15,7 @@
 import ForumList from './ForumList'
 
 import { defineProps } from 'vue'
-import { useStore } from 'vuex';
+import { useStore } from 'vuex'
 
 defineProps({
   categories: {

@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import { useStore } from 'vuex'
 import { defineProps, computed } from 'vue'
 
 const users = computed(() => { return useStore().state.users })

@@ -9,7 +9,7 @@
 import CategoryList from '@/components/CategoryList'
 
 import { defineProps, computed } from 'vue'
-import { useStore } from 'vuex';
+import { useStore } from 'vuex'
 
 const props = defineProps({
   id: {

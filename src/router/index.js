@@ -5,7 +5,7 @@ import ForumShow from '@/pages/ForumShow'
 import CategoryShow from '@/pages/CategoryShow'
 
 import { createRouter, createWebHistory } from 'vue-router'
-import { useStore } from 'vuex';
+import { useStore } from 'vuex'
 
 const routes = [
   {
