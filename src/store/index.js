@@ -4,7 +4,7 @@ import sourceData from '@/data.json'
 export default createStore({
   state: {
     ...sourceData,
-    authId: '38St7Q8Zi2N1SPa5ahzssq9kbyp1'
+    authId: '7uVPJS9GHoftN58Z2MXCYDqmNAh2'
   },
   getters: {
     authUser(state) {
