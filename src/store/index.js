@@ -33,6 +33,10 @@ export default createStore({
     createPost(context, post) {
       context.commit('createPost', { post })
       context.commit('appendPostToThread', { post })
+    },
+
+    updateUser(context, user) {
+      context.commit('updateUser', { user, userId: user.id })
     }
   },
   mutations: {
@@ -45,6 +49,12 @@ export default createStore({
     appendPostToThread(state, { post }) {
       const thread = state.threads.find(thread => thread.id === post.threadId)
       thread.posts.push(post.id)
+    },
+
+    updateUser(state, { user, userId }) {
+      const userIndex = state.users.findIndex(user => user.id === userId)
+
+      state.users[userIndex] = { ...user }
     }
   },
 })
