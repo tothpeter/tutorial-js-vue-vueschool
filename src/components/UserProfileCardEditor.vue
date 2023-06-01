@@ -64,7 +64,7 @@
     </div>
 
     <div class="btn-group space-between">
-      <button class="btn-ghost">Cancel</button>
+      <button @click="cancel" class="btn-ghost">Cancel</button>
       <button type="submit" class="btn-blue">Save</button>
     </div>
     </form>
@@ -72,7 +72,9 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   user: {
@@ -83,9 +85,15 @@ const props = defineProps({
 
 const activeUser = { ...props.user }
 
-const emit = defineEmits(['save'])
+const store = useStore()
+const router = useRouter()
 
 function save() {
-  emit('save', { user: activeUser })
+  store.dispatch('updateUser', activeUser)
+  router.push({ name: 'Profile' })
+}
+
+function cancel() {
+  router.push({ name: 'Profile' })
 }
 </script>
