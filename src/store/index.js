@@ -30,9 +30,13 @@ export default createStore({
     }
   },
   actions: {
-    createPost(context, post) {
-      context.commit('createPost', { post })
-      context.commit('appendPostToThread', { post })
+    createPost({ state, commit }, post) {
+      post.id = state.posts.length + 1
+      post.userId = this.getters.authUser.id
+      post.publishedAt = Math.floor(Date.now() / 1000)
+
+      commit('createPost', { post })
+      commit('appendPostToThread', { post })
     },
 
     updateUser(context, user) {
@@ -41,9 +45,6 @@ export default createStore({
   },
   mutations: {
     createPost(state, { post }) {
-      post.id = state.posts.length + 1
-      post.userId = state.users[0].id
-
       state.posts.push(post)
     },
     appendPostToThread(state, { post }) {

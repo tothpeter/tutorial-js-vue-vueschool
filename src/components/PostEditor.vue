@@ -22,7 +22,6 @@ export default {
     save() {
       const post = {
         text: this.text,
-        publishedAt: Math.floor(Date.now() / 1000),
         threadId: this.threadId,
       }
 
