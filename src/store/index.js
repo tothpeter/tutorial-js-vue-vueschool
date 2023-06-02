@@ -39,7 +39,8 @@ export default createStore({
       commit('appendPostToThread', { post })
     },
 
-    createThread({ state, commit }, { thread, post }) {
+    async createThread({ state, commit }, { threadParams, postParams }) {
+      const thread = { ...threadParams }
       thread.id = (state.threads.length + 1).toString()
       thread.userId = this.getters.authUser.id
       thread.publishedAt = Math.floor(Date.now() / 1000)
@@ -48,8 +49,11 @@ export default createStore({
       commit('appendThreadToForum', { thread })
       commit('appendThreadToUser', { thread })
 
+      const post = { ...postParams }
       post.threadId = thread.id
       this.dispatch('createPost', post)
+
+      return thread
     },
 
     updateUser(context, user) {

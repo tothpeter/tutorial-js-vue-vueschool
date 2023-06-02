@@ -6,7 +6,7 @@
       <div class="form-group">
         <label for="thread_title">Title:</label>
         <input
-          v-model="newThread.title"
+          v-model="threadParams.title"
           type="text"
           id="thread_title"
           class="form-input"
@@ -17,7 +17,7 @@
       <div class="form-group">
         <label for="thread_content">Content:</label>
         <textarea
-          v-model="newPost.text"
+          v-model="postParams.text"
           name="content"
           id="thread_content"
           class="form-input">
@@ -49,28 +49,26 @@ const state = store.state
 
 const forum = computed(() => { return state.forums.find(forum => forum.id === props.id) })
 
-const newThread = reactive({
-  title: 'TTTitle',
+const threadParams = reactive({
+  title: '',
   forumId: props.id
 })
 
-const newPost = {
-  text: 'Cont'
+const postParams = {
+  text: ''
 }
 
 function cancel() {
   router.push({ name: 'ForumShow', params: { id: props.id } })
 }
 
-function create() {
-  store.dispatch('createThread', {
-    post: newPost,
-    thread: newThread
+async function create() {
+  const newThread = await store.dispatch('createThread', {
+    threadParams,
+    postParams
   })
 
-  router.push({ name: 'ForumShow', params: { id: props.id } })
-  // newThread.title = ''
-  // newPost.content = ''
+  router.push({ name: 'ThreadShow', params: { id: newThread.id } })
 }
 </script>
 
