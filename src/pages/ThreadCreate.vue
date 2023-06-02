@@ -40,7 +40,7 @@ import router from '@/router'
 const props = defineProps({
   id: {
     required: true,
-    type: Number
+    type: String
   }
 })
 
