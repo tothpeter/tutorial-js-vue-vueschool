@@ -1,5 +1,6 @@
 import Home from '@/pages/Home'
 import ThreadShow from '@/pages/ThreadShow'
+import ThreadCreate from '@/pages/ThreadCreate'
 import NotFound from '@/pages/NotFound'
 import ForumShow from '@/pages/ForumShow'
 import CategoryShow from '@/pages/CategoryShow'
@@ -31,6 +32,12 @@ const routes = [
     path: '/forum/:id',
     name: 'ForumShow',
     component: ForumShow,
+    props: true,
+  },
+  {
+    path: '/forum/:id/new-thread',
+    name: 'ThreadCreate',
+    component: ThreadCreate,
     props: true,
   },
   {
