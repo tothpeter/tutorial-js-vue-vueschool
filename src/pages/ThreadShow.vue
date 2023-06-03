@@ -12,11 +12,11 @@
     </h1>
 
     <p>
-      By <a href="#" class="link-unstyled">{{ userById(thread.userId).name }}</a>, 2 hours ago
+      By <a href="#" class="link-unstyled">{{ thread.author.name }}</a>, 2 hours ago
       <span
         style="float: right; margin-top: 2px;"
         class="hide-mobile text-faded text-small"
-      >3 replies by 3 contributors</span>
+      >{{ thread.repliesCount }} replies by {{ thread.contributorCount }} contributors</span>
     </p>
 
     <post-list :posts="threadPosts" />
@@ -52,7 +52,7 @@ export default {
       return this.$store.state.users
     },
     thread() {
-      return findById(this.threads, this.id)
+      return this.$store.getters.thread(this.id)
     },
     threadPosts() {
       return this.posts.filter(post => post.threadId === this.id)

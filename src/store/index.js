@@ -28,8 +28,28 @@ export default createStore({
           return this.threads.length
         }
       }
+    },
+
+    thread(state) {
+      return function(id) {
+        const thread = findById(state.threads, id)
+
+        return {
+          ...thread,
+          get author() {
+            return findById(state.users, thread.userId)
+          },
+          get repliesCount() {
+            return thread.posts.length - 1
+          },
+          get contributorCount() {
+            return thread.contributors.length
+          }
+        }
+      }
     }
   },
+
   actions: {
     createPost({ state, commit }, post) {
       post.id = (state.posts.length + 1).toString()
