@@ -23,14 +23,15 @@
 
     <div class="btn-group">
       <button @click="$emit('cancel')" type="button" class="btn-ghost">Cancel</button>
-      <button type="submit" class="btn-blue">Save</button>
+      <button type="submit" class="btn-blue">
+        {{ existing ? 'Update' : 'Create' }}
+      </button>
     </div>
   </form>
 </template>
 
 <script setup>
 import { defineProps, defineEmits } from 'vue'
-
 
 const props = defineProps({
   title: {
@@ -44,6 +45,8 @@ const props = defineProps({
     default: ''
   }
 })
+
+const existing = !!props.title
 
 const form = {
   title: props.title,
