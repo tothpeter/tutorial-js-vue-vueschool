@@ -125,7 +125,7 @@ function makeAppendChildToParentMutation({ parentName, childName }) {
     const resource = findById(state[parentName], parentId)
     resource[childName] = resource[childName] || []
 
-    if(resource[childName].includes(childId)) {
+    if(!resource[childName].includes(childId)) {
       resource[childName].push(childId)
     }
   }
