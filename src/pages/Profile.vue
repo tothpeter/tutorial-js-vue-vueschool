@@ -35,7 +35,3 @@ const store = useStore()
 
 const user = computed(() => store.getters.authUser)
 </script>
-
-<style>
-
-</style>

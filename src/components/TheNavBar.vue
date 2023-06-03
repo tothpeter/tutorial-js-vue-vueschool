@@ -52,6 +52,3 @@ import { useStore } from 'vuex'
 
 const authUser = computed(() => useStore().getters.authUser)
 </script>
-
-<style>
-</style>

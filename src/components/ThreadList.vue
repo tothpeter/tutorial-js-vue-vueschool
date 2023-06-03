@@ -55,7 +55,3 @@ function userById(id) {
   return users.value.find(user => user.id === id)
 }
 </script>
-
-<style scoped>
-
-</style>

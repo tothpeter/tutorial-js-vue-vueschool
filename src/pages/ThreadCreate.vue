@@ -46,7 +46,3 @@ async function create({ title, text }) {
   router.push({ name: 'ThreadShow', params: { id: newThread.id } })
 }
 </script>
-
-<style>
-
-</style>

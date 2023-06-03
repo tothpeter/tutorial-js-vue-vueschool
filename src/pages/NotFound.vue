@@ -4,12 +4,3 @@
     <router-link :to="{name: 'Home'}">Go back home</router-link>
   </div>
 </template>
-
-<script>
-
-</script>
-
-
-<style scoped>
-
-</style>

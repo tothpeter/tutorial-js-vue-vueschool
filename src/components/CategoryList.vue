@@ -29,7 +29,3 @@ function getForumsForCategory(category) {
   return state.forums.filter(forum => forum.categoryId === category.id)
 }
 </script>
-
-<style>
-
-</style>
