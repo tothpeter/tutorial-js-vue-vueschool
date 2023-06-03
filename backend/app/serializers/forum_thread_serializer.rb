@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ForumThreadSerializer < ActiveModel::Serializer
-  attributes :id, :forum, :title, :published_at
+  attributes :id, :forum, :user_id, :title, :published_at
 
   def id
     object.id.to_s
@@ -9,5 +9,9 @@ class ForumThreadSerializer < ActiveModel::Serializer
 
   def forum
     object.forum_id.to_s
+  end
+
+  def user_id
+    object.user_id.to_s
   end
 end
