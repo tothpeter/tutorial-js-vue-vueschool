@@ -11,6 +11,7 @@ import ThreadEditor from '@/components/ThreadEditor.vue'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import router from '@/router'
+import { findById } from '@/helpers'
 
 const props = defineProps({
   id: {
@@ -22,7 +23,7 @@ const props = defineProps({
 const store = useStore()
 const state = store.state
 
-const forum = computed(() => { return state.forums.find(forum => forum.id === props.id) })
+const forum = computed(() => { return findById(state.forums, props.id) })
 
 function cancel() {
   router.push({ name: 'ForumShow', params: { id: props.id } })

@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import sourceData from '@/data.json'
+import { findById } from '@/helpers'
 
 export default createStore({
   state: {
@@ -8,7 +9,7 @@ export default createStore({
   },
   getters: {
     authUser(state) {
-      const user = state.users.find(user => user.id === state.authId)
+      const user = findById(state.users, state.authId)
 
       if (!user) return null
 
@@ -78,18 +79,18 @@ export default createStore({
     },
 
     appendPostToThread(state, { post }) {
-      const thread = state.threads.find(thread => thread.id === post.threadId)
+      const thread = findById(state.threads, post.threadId)
       thread.posts = thread.posts || []
       thread.posts.push(post.id)
     },
 
     appendThreadToForum(state, { thread }) {
-      const forum = state.forums.find(forum => forum.id === thread.forumId)
+      const forum = findById(state.forums, thread.forumId)
       forum.threads.push(thread.id)
     },
 
     appendThreadToUser(state, { thread }) {
-      const user = state.users.find(user => user.id === thread.userId)
+      const user = findById(state.users, thread.userId)
       user.threads = user.threads || []
       user.threads.push(thread.id)
     },

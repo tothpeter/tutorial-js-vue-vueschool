@@ -41,6 +41,7 @@
 <script setup>
 import { useStore } from 'vuex'
 import { computed } from 'vue'
+import { findById } from '@/helpers'
 
 const users = computed(() => { return useStore().state.users })
 
@@ -52,6 +53,6 @@ defineProps({
 })
 
 function userById(id) {
-  return users.value.find(user => user.id === id)
+  return findById(users.value, id)
 }
 </script>

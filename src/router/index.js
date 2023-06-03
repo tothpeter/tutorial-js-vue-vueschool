@@ -9,6 +9,7 @@ import Profile from '@/pages/Profile'
 
 import { createRouter, createWebHistory } from 'vue-router'
 import { useStore } from 'vuex'
+import { findById } from '@/helpers'
 
 const routes = [
   {
@@ -53,7 +54,7 @@ const routes = [
     component: ThreadShow,
     props: true,
     beforeEnter(to, from, next) {
-      const threadExist = useStore().state.threads.find((thread) => thread.id === to.params.id)
+      const threadExist = findById(useStore().state.threads, to.params.id)
 
       if (threadExist) {
         next()

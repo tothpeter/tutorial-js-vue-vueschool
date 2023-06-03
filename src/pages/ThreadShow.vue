@@ -25,6 +25,7 @@
 <script>
 import PostList from '@/components/PostList'
 import PostEditor from '@/components/PostEditor'
+import { findById } from '@/helpers'
 
 export default {
   props: {
@@ -48,7 +49,7 @@ export default {
       return this.$store.state.users
     },
     thread() {
-      return this.threads.find(thread => thread.id === this.id)
+      return findById(this.threads, this.id)
     },
     threadPosts() {
       return this.posts.filter(post => post.threadId === this.id)
@@ -56,7 +57,7 @@ export default {
   },
   methods: {
     userById(id) {
-      return this.users.find(user => user.id === id)
+      return findById(this.users, id)
     },
     addPost(eventData) {
       const post = {

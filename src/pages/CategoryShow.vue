@@ -7,6 +7,7 @@
 
 <script setup>
 import CategoryList from '@/components/CategoryList'
+import { findById } from '@/helpers'
 
 import { computed } from 'vue'
 import { useStore } from 'vuex'
@@ -21,6 +22,6 @@ const props = defineProps({
 const state = useStore().state
 
 const category = computed(() => {
-  return state.categories.find(category => category.id === props.id)
+  return findById(state.categories, props.id)
 })
 </script>
