@@ -18,7 +18,7 @@
 <script setup>
 import ThreadList from '@/components/ThreadList.vue'
 
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 const props = defineProps({

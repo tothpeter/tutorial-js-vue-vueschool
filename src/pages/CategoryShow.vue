@@ -8,7 +8,7 @@
 <script setup>
 import CategoryList from '@/components/CategoryList'
 
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 const props = defineProps({

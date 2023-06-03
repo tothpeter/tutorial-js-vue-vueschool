@@ -8,7 +8,7 @@
 
 <script setup>
 import ThreadEditor from '@/components/ThreadEditor.vue'
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import router from '@/router'
 

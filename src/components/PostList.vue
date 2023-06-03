@@ -24,7 +24,7 @@
 
 <script setup>
 import { useStore } from 'vuex'
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 
 const users = computed(() => { return useStore().state.users })
 

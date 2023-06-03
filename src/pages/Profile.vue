@@ -20,7 +20,7 @@ import PostList from '@/components/PostList.vue'
 import UserProfileCard from '@/components/UserProfileCard'
 import UserProfileCardEditor from '@/components/UserProfileCardEditor'
 
-import { computed, defineProps } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 defineProps({

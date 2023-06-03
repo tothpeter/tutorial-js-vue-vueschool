@@ -14,7 +14,6 @@
 <script setup>
 import ForumList from './ForumList'
 
-import { defineProps } from 'vue'
 import { useStore } from 'vuex'
 
 defineProps({

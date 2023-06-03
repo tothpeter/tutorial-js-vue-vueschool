@@ -72,7 +72,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 

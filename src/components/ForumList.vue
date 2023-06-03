@@ -25,8 +25,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-
 defineProps({
   forums: {
     required: true,
