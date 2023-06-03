@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import ForumList from './ForumList'
+import ForumList from '@/components/ForumList'
 
 import { useStore } from 'vuex'
 
