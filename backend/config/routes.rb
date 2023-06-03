@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :forums
+  resources :forum_threads
 end
