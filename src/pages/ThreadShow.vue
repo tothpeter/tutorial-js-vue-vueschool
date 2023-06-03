@@ -4,10 +4,10 @@
       {{ thread.title }}
       <router-link
         :to="{ name: 'ThreadEdit', params: { id: thread.id } }"
-        class="btn-green btn-small"
-        scoped="button"
+        custom
+        v-slot="{ navigate }"
       >
-        Edit
+        <button @click="navigate" class="btn-green btn-small">Edit</button>
       </router-link>
     </h1>
 
