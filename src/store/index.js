@@ -37,7 +37,7 @@ export default createStore({
       post.publishedAt = Math.floor(Date.now() / 1000)
 
       commit('setPost', post)
-      commit('appendPostToThread', { post })
+      commit('appendPostToThread', post)
     },
 
     async createThread({ state, commit }, { threadParams, postParams }) {
@@ -47,8 +47,8 @@ export default createStore({
       thread.publishedAt = Math.floor(Date.now() / 1000)
 
       commit('setThread', thread)
-      commit('appendThreadToForum', { thread })
-      commit('appendThreadToUser', { thread })
+      commit('appendThreadToForum', thread)
+      commit('appendThreadToUser', thread)
 
       const post = { ...postParams }
       post.threadId = thread.id
@@ -83,7 +83,7 @@ export default createStore({
       upsert(state.posts, post)
     },
 
-    appendPostToThread(state, { post }) {
+    appendPostToThread(state, post) {
       const thread = findById(state.threads, post.threadId)
       thread.posts = thread.posts || []
       thread.posts.push(post.id)
@@ -93,12 +93,12 @@ export default createStore({
       upsert(state.threads, thread)
     },
 
-    appendThreadToForum(state, { thread }) {
+    appendThreadToForum(state, thread) {
       const forum = findById(state.forums, thread.forumId)
       forum.threads.push(thread.id)
     },
 
-    appendThreadToUser(state, { thread }) {
+    appendThreadToUser(state, thread) {
       const user = findById(state.users, thread.userId)
       user.threads = user.threads || []
       user.threads.push(thread.id)
