@@ -34,24 +34,16 @@
 import { defineProps, defineEmits } from 'vue'
 
 const props = defineProps({
-  title: {
-    required: false,
-    type: String,
-    default: ''
-  },
-  text: {
-    required: false,
-    type: String,
-    default: ''
-  }
+  title: { type: String, default: '' },
+  text: { type: String, default: '' }
 })
-
-const existing = !!props.title
 
 const form = {
   title: props.title,
   text: props.text
 }
+
+const existing = !!props.title
 
 const emit = defineEmits(['save'])
 
