@@ -6,7 +6,7 @@
         <a href="#">
           <img class="avatar-large" :src="userById(post.userId).avatar" alt="">
         </a>
-        <p class="desktop-only text-small">107 posts</p>
+        <p class="desktop-only text-small">{{ userById(post.userId).postsCount }} posts</p>
       </div>
 
       <div class="post-content">
@@ -24,10 +24,6 @@
 
 <script setup>
 import { useStore } from 'vuex'
-import { computed } from 'vue'
-import { findById } from '@/helpers'
-
-const users = computed(() => { return useStore().state.users })
 
 defineProps({
   posts: {
@@ -37,7 +33,7 @@ defineProps({
 })
 
 function userById(id) {
-  return findById(users.value, id)
+  return useStore().getters.user(id)
 }
 </script>
 
