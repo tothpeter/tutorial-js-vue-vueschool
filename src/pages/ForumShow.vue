@@ -32,5 +32,9 @@ const props = defineProps({
 const state = useStore().state
 
 const forum = computed(() => { return findById(state.forums, props.id) })
-const threads = computed(() => { return state.threads.filter(thread => thread.forumId === props.id) })
+const threads = computed(() => {
+  return forum.value.threads.map(threadId => {
+    return useStore().getters.thread(threadId)
+  })
+})
 </script>
