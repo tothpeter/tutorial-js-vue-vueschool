@@ -56,6 +56,14 @@ export default createStore({
       return thread
     },
 
+    updateThread(context, { threadParams }) {
+      context.commit('updateThread', threadParams)
+    },
+
+    updatePost(context, { postParams }) {
+      context.commit('updatePost', postParams)
+    },
+
     updateUser(context, user) {
       context.commit('updateUser', { user, userId: user.id })
     }
@@ -84,6 +92,20 @@ export default createStore({
       const user = state.users.find(user => user.id === thread.userId)
       user.threads = user.threads || []
       user.threads.push(thread.id)
+    },
+
+    updateThread(state, threadParams) {
+      const threadIndex = state.threads.findIndex(thread => thread.id === threadParams.id)
+      const originalThread = state.threads[threadIndex]
+
+      state.threads[threadIndex] = { ...originalThread, ...threadParams }
+    },
+
+    updatePost(state, postParams) {
+      const postIndex = state.posts.findIndex(post => post.id === postParams.id)
+      const originalPost = state.posts[postIndex]
+
+      state.posts[postIndex] = { ...originalPost, ...postParams }
     },
 
     updateUser(state, { user, userId }) {

@@ -1,6 +1,7 @@
 import Home from '@/pages/Home'
 import ThreadShow from '@/pages/ThreadShow'
 import ThreadCreate from '@/pages/ThreadCreate'
+import ThreadEdit from '@/pages/ThreadEdit'
 import NotFound from '@/pages/NotFound'
 import ForumShow from '@/pages/ForumShow'
 import CategoryShow from '@/pages/CategoryShow'
@@ -65,6 +66,12 @@ const routes = [
         })
       }
     },
+  },
+  {
+    path: '/thread/:id/edit',
+    name: 'ThreadEdit',
+    component: ThreadEdit,
+    props: true,
   },
   {
     path: '/:pathMatch(.*)*',

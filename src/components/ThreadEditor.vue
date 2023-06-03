@@ -3,7 +3,7 @@
     <div class="form-group">
       <label for="thread_title">Title:</label>
       <input
-        v-model="title"
+        v-model="form.title"
         type="text"
         id="thread_title"
         class="form-input"
@@ -14,7 +14,7 @@
     <div class="form-group">
       <label for="thread_content">Content:</label>
       <textarea
-        v-model="text"
+        v-model="form.text"
         name="content"
         id="thread_content"
         class="form-input">
@@ -35,23 +35,24 @@ import { defineProps, defineEmits } from 'vue'
 const props = defineProps({
   title: {
     required: false,
-    type: String
+    type: String,
+    default: ''
   },
   text: {
     required: false,
-    type: String
+    type: String,
+    default: ''
   }
 })
 
-let title = props.title || ''
-let text = props.text || ''
+const form = {
+  title: props.title,
+  text: props.text
+}
 
 const emit = defineEmits(['save'])
 
 function save() {
-  emit('save', {
-    title,
-    text
-  })
+  emit('save', { ...form })
 }
 </script>
