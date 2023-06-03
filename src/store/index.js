@@ -58,6 +58,7 @@ export default createStore({
 
       commit('setPost', post)
       commit('appendPostToThread', { parentId: post.threadId, childId: post.id })
+      commit('appendContributorToThread', { parentId: post.threadId, childId: post.userId })
     },
 
     async createThread({ state, commit }, { threadParams, postParams }) {
@@ -111,6 +112,7 @@ export default createStore({
 
     appendThreadToForum: makeAppendChildToParentMutation({ parentName: 'forums', childName: 'threads' }),
     appendThreadToUser: makeAppendChildToParentMutation({ parentName: 'users', childName: 'threads' }),
+    appendContributorToThread: makeAppendChildToParentMutation({ parentName: 'threads', childName: 'contributors' }),
 
     setUser(state, user) {
       upsert(state.users, user)
@@ -122,6 +124,9 @@ function makeAppendChildToParentMutation({ parentName, childName }) {
   return (state, { parentId, childId }) => {
     const resource = findById(state[parentName], parentId)
     resource[childName] = resource[childName] || []
-    resource[childName].push(childId)
+
+    if(resource[childName].includes(childId)) {
+      resource[childName].push(childId)
+    }
   }
 }
