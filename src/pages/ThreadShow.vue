@@ -13,7 +13,10 @@
 
     <p>
       By <a href="#" class="link-unstyled">{{ userById(thread.userId).name }}</a>, 2 hours ago
-      <span style="float: left; margin-top: 2px;" class="hide-mobile text-faded text-small">3 replies by 3 contributors</span>
+      <span
+        style="float: right; margin-top: 2px;"
+        class="hide-mobile text-faded text-small"
+      >3 replies by 3 contributors</span>
     </p>
 
     <post-list :posts="threadPosts" />
