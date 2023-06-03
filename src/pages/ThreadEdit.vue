@@ -37,14 +37,14 @@ function update({ title, text }) {
     id: props.id
   }
 
-  store.dispatch('updateThread', { threadParams })
+  store.dispatch('updateThread', threadParams )
 
   const postParams = {
     text,
     id: thread.value.posts[0]
   }
 
-  store.dispatch('updatePost', { postParams })
+  store.dispatch('updatePost', postParams)
 
   router.push({ name: 'ThreadShow', params: { id: props.id } })
 }

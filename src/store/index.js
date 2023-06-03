@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import sourceData from '@/data.json'
-import { findById } from '@/helpers'
+import { findById, upsert } from '@/helpers'
 
 export default createStore({
   state: {
@@ -36,7 +36,7 @@ export default createStore({
       post.userId = this.getters.authUser.id
       post.publishedAt = Math.floor(Date.now() / 1000)
 
-      commit('createPost', { post })
+      commit('setPost', post)
       commit('appendPostToThread', { post })
     },
 
@@ -46,7 +46,7 @@ export default createStore({
       thread.userId = this.getters.authUser.id
       thread.publishedAt = Math.floor(Date.now() / 1000)
 
-      commit('createThread', { thread })
+      commit('setThread', thread)
       commit('appendThreadToForum', { thread })
       commit('appendThreadToUser', { thread })
 
@@ -57,31 +57,40 @@ export default createStore({
       return thread
     },
 
-    updateThread(context, { threadParams }) {
-      context.commit('updateThread', threadParams)
+    updateThread(context, threadParams) {
+      const originalThread = findById(context.state.threads, threadParams.id)
+
+      const newThread = { ...originalThread, ...threadParams }
+      context.commit('setThread', newThread)
     },
 
-    updatePost(context, { postParams }) {
-      context.commit('updatePost', postParams)
+    updatePost(context, postParams) {
+      const originalPost = findById(context.state.posts, postParams.id)
+
+      const newPost = { ...originalPost, ...postParams }
+      context.commit('setPost', newPost)
     },
 
-    updateUser(context, user) {
-      context.commit('updateUser', { user, userId: user.id })
+    updateUser(context, userParams) {
+      const originalUser = findById(context.state.users, userParams.id)
+
+      const newUser = { ...originalUser, ...userParams }
+      context.commit('setUser', newUser)
     }
   },
   mutations: {
-    createPost(state, { post }) {
-      state.posts.push(post)
-    },
-
-    createThread(state, { thread }) {
-      state.threads.push(thread)
+    setPost(state, post) {
+      upsert(state.posts, post)
     },
 
     appendPostToThread(state, { post }) {
       const thread = findById(state.threads, post.threadId)
       thread.posts = thread.posts || []
       thread.posts.push(post.id)
+    },
+
+    setThread(state, thread) {
+      upsert(state.threads, thread)
     },
 
     appendThreadToForum(state, { thread }) {
@@ -95,24 +104,8 @@ export default createStore({
       user.threads.push(thread.id)
     },
 
-    updateThread(state, threadParams) {
-      const threadIndex = state.threads.findIndex(thread => thread.id === threadParams.id)
-      const originalThread = state.threads[threadIndex]
-
-      state.threads[threadIndex] = { ...originalThread, ...threadParams }
-    },
-
-    updatePost(state, postParams) {
-      const postIndex = state.posts.findIndex(post => post.id === postParams.id)
-      const originalPost = state.posts[postIndex]
-
-      state.posts[postIndex] = { ...originalPost, ...postParams }
-    },
-
-    updateUser(state, { user, userId }) {
-      const userIndex = state.users.findIndex(user => user.id === userId)
-
-      state.users[userIndex] = { ...user }
+    setUser(state, user) {
+      upsert(state.users, user)
     }
   },
 })
