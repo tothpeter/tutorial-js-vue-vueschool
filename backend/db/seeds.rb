@@ -47,3 +47,18 @@ data[:threads].each do |thread|
 
   ForumThread.create!(final_params)
 end
+
+puts 'Creating posts...'
+Post.destroy_all
+
+data[:posts].each do |post|
+  final_params = {
+    user_id: post[:userId],
+    forum_thread_id: post[:threadId],
+    published_at: post[:publishedAt]
+  }
+
+  final_params.merge!(post.slice(:id, :text))
+
+  Post.create!(final_params)
+end
