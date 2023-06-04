@@ -12,7 +12,7 @@
     </h1>
 
     <p>
-      By <a href="#" class="link-unstyled">{{ thread.author.name }}</a>, <base-date :timestamp="thread.publishedAt" />
+      By <a href="#" class="link-unstyled">{{ thread.author?.name }}</a>, <base-date :timestamp="thread.publishedAt" />
       <span
         style="float: right; margin-top: 2px;"
         class="hide-mobile text-faded text-small"
@@ -29,6 +29,7 @@
 import PostList from '@/components/PostList'
 import PostEditor from '@/components/PostEditor'
 import { findById } from '@/helpers'
+import axios from 'axios'
 
 export default {
   props: {
@@ -70,6 +71,24 @@ export default {
 
       this.$store.dispatch('createPost', post)
     }
+  },
+  created() {
+    axios.get(`http://localhost:3000/forum_threads/${this.id}`).then(response => {
+      const thread = {
+        ...response.data,
+        userId: response.data.user_id,
+        publishedAt: response.data.published_at
+      }
+
+      delete thread.user_id
+      delete thread.published_at
+
+      this.$store.commit('setThread', thread)
+    }).then(() => {
+      axios.get(`http://localhost:3000/users/${this.thread.userId}`).then(response => {
+        this.$store.commit('setUser', response.data)
+      })
+    })
   }
 }
 </script>

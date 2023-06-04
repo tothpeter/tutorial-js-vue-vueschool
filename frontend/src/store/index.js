@@ -1,10 +1,15 @@
 import { createStore } from 'vuex'
-import sourceData from '@/data.json'
 import { findById, upsert } from '@/helpers'
 
 export default createStore({
   state: {
-    ...sourceData,
+    users: [],
+
+    categories: [],
+    forums: [],
+    threads: [],
+    posts: [],
+
     authId: '7uVPJS9GHoftN58Z2MXCYDqmNAh2'
   },
   getters: {
@@ -46,10 +51,18 @@ export default createStore({
             return findById(state.users, thread.userId)
           },
           get repliesCount() {
-            return thread.posts.length - 1
+            if (!thread.posts) {
+              return 0
+            } else {
+              return thread.posts.length - 1
+            }
           },
           get contributorCount() {
-            return thread.contributors.length
+            if (!thread.contributors) {
+              return 0
+            } else {
+              return thread.contributors.length
+            }
           }
         }
       }

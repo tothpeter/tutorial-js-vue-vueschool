@@ -8,8 +8,8 @@ import CategoryShow from '@/pages/CategoryShow'
 import Profile from '@/pages/Profile'
 
 import { createRouter, createWebHistory } from 'vue-router'
-import { useStore } from 'vuex'
-import { findById } from '@/helpers'
+// import { useStore } from 'vuex'
+// import { findById } from '@/helpers'
 
 const routes = [
   {
@@ -53,20 +53,20 @@ const routes = [
     name: 'ThreadShow',
     component: ThreadShow,
     props: true,
-    beforeEnter(to, from, next) {
-      const threadExist = findById(useStore().state.threads, to.params.id)
+    // beforeEnter(to, from, next) {
+    //   const threadExist = findById(useStore().state.threads, to.params.id)
 
-      if (threadExist) {
-        next()
-      } else {
-        next({
-          name: 'NotFound',
-          params: { pathMatch: to.path.substring(1).split('/') },
-          query: to.query,
-          hash: to.hash,
-        })
-      }
-    },
+    //   if (threadExist) {
+    //     next()
+    //   } else {
+    //     next({
+    //       name: 'NotFound',
+    //       params: { pathMatch: to.path.substring(1).split('/') },
+    //       query: to.query,
+    //       hash: to.hash,
+    //     })
+    //   }
+    // },
   },
   {
     path: '/thread/:id/edit',
