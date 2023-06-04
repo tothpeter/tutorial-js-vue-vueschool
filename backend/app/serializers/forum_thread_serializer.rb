@@ -14,4 +14,8 @@ class ForumThreadSerializer < ActiveModel::Serializer
   def user_id
     object.user_id.to_s
   end
+
+  def published_at
+    object.published_at.to_i
+  end
 end

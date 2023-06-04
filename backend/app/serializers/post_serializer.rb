@@ -16,4 +16,8 @@ class PostSerializer < ActiveModel::Serializer
   def thread_id
     object.forum_thread_id.to_s
   end
+
+  def published_at
+    object.published_at.to_i
+  end
 end
