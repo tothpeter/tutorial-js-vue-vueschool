@@ -88,6 +88,29 @@ export default {
       axios.get(`http://localhost:3000/users/${this.thread.userId}`).then(response => {
         this.$store.commit('setUser', response.data)
       })
+    }).then(() => {
+      axios.get('http://localhost:3000/users').then(response => {
+        response.data.forEach(user => {
+          this.$store.commit('setUser', user)
+        })
+      })
+    }).then(() => {
+      axios.get(`http://localhost:3000/forum_threads/${this.id}/posts`).then(response => {
+        response.data.forEach(post => {
+          const postWithAuthor = {
+            ...post,
+            userId: post.user_id,
+            threadId: post.thread_id,
+            publishedAt: post.published_at
+          }
+
+          delete postWithAuthor.user_id
+          delete postWithAuthor.thread_id
+          delete postWithAuthor.published_at
+
+          this.$store.commit('setPost', postWithAuthor)
+        })
+      })
     })
   }
 }

@@ -10,6 +10,13 @@ class ForumThreadsController < ApplicationController
     render json: @forum_threads
   end
 
+  # GET /forum_threads/1/posts
+  def posts
+    @posts = Post.where(forum_thread_id: params[:id])
+
+    render json: @posts
+  end
+
   # GET /forum_threads/1
   def show
     render json: @forum_thread
